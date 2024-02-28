@@ -22,4 +22,14 @@ export class BlogService {
         const posts = await this.postModel.find().exec();
         return posts;
     }
+
+    async editPosts( postId, createPostDTO: CreatePostDTO ): Promise<Post> {
+        const editedPost = await this.postModel.findByIdAndUpdate(postId, createPostDTO, {new: true});
+        return editedPost;
+    }
+
+    async deletePost(postID): Promise<any> {
+        const deletedPost = await this.postModel.findByIdAndDelete(postID);
+        return deletedPost;
+    }
 }
